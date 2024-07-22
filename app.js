@@ -35,9 +35,10 @@ if (port == null || port == "") {
 //Firebase Initialization
 
 firebaseAdmin.initializeApp({
-  credential: firebaseAdmin.credential.cert(
+  credential: firebaseAdmin.credential.cert({
       GOOGLE_APPLICATION_CREDENTIALS,
-      privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n')),
+      privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n')
+  }),
   projectId: "micro-pilot-299617",
 });
 
