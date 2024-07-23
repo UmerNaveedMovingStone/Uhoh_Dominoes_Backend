@@ -5,8 +5,8 @@
  */
 
 var app = require('../app');
-var debug = require('debug')('bloodlines-backend-server:server');
-var http = require('http');
+var debug = require('debug')('Uhoh-Dominoes-backend-server:server');
+var http = require('https');
 
 /**
  * Get port from environment and store in Express.
