@@ -38,7 +38,7 @@ if (port == null || port == "") {
 firebaseAdmin.initializeApp({
   credential: firebaseAdmin.credential.cert(
       GOOGLE_APPLICATION_CREDENTIALS),
-  projectId: "micro-pilot-299617",
+  projectId: "uhdominoes",
 });
 
 const firebaseConfig = {
