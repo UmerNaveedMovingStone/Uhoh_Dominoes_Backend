@@ -4,7 +4,9 @@ const server = express();
 var cors = require("cors");
 const http = require("http").Server(server);
 var firebaseAdmin = require("firebase-admin");
-const GOOGLE_APPLICATION_CREDENTIALS = ".Uhoh_Dominoes_Backend/keys/service-account.json";
+const GOOGLE_APPLICATION_CREDENTIALS = JSON.parse(
+  process.env.service_account as string
+);
 const firebase = require("firebase");
 const { Server } = require("socket.io");
 // const io = new Server(server);
