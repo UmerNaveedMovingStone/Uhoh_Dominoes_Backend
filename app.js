@@ -42,12 +42,12 @@ firebaseAdmin.initializeApp({
 });
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAGvqIwmWekWuTd5EPFX_SE-4Vm-qoow1c",
+  apiKey: "AIzaSyAuG-gsvWcR_W-OBUid51EGtTchYrKebws",
   authDomain: "uhdominoes.firebaseapp.com",
   projectId: "uhdominoes",
   storageBucket: "uhdominoes.appspot.com",
-  messagingSenderId: "142291259394",
-  appId: "1:698115257838:android:0ffe8512ff8353d0390aff",
+  messagingSenderId: "698115257838",
+  appId: "1:698115257838:web:bd53bb82066ee873390aff",
   measurementId: "G-BM3QYPLPZQ",
 };
 
