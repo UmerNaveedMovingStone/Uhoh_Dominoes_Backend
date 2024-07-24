@@ -36,8 +36,7 @@ if (port == null || port == "") {
 //Firebase Initialization
 
 firebaseAdmin.initializeApp({
-  credential: firebaseAdmin.credential.cert(
-      GOOGLE_APPLICATION_CREDENTIALS),
+  credential: firebaseAdmin.credential.cert(GOOGLE_APPLICATION_CREDENTIALS),
   projectId: "uhdominoes",
 });
 
