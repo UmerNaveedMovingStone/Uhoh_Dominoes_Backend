@@ -1,8 +1,6 @@
 const firebase = require("firebase/app");
 const firebaseAdmin = require("firebase-admin");
 const constants = require("../utils/Constants");
-/*Svaing firestore*/
-const db = admin.firestore();
 
 
 function login(user, successCallback, failureCallback){
@@ -231,8 +229,10 @@ function deleteuser(email, successCallback, failureCallback){
         const customToken = await firebaseAdmin.auth().createCustomToken(user.uid);
         await firebase.auth().signInWithCustomToken(customToken);
         const currentUser = firebase.auth().currentUser;
+        const db = admin.firestore();
+        
          currentUser.delete().then(()=>{
-             db.collection('users/${user.uid}').doc().delete();
+            db.collection('users/${user.uid}').doc().delete();
             console.log("User Account Deleted")
             successCallback();
         }).catch(err => {
