@@ -226,9 +226,9 @@ function forgotPassword(email, successCallback, failureCallback){
 function deleteuser(email, successCallback, failureCallback){
     firebaseAdmin.auth().getUserByEmail(email).then(async (user) => {
 
-       // const customToken = await firebaseAdmin.auth().createCustomToken(user.uid);
-        //await firebase.auth().signInWithCustomToken(customToken);
-        //const currentUser = firebase.auth().currentUser;
+        const customToken = await firebaseAdmin.auth().createCustomToken(user.uid);
+        await firebase.auth().signInWithCustomToken(customToken);
+        const currentUser = firebase.auth().currentUser;
          firebase.auth().delete(user.uid).then(()=>{
             console.log("User Account Deleted")
             successCallback();
