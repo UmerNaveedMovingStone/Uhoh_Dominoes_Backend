@@ -229,7 +229,7 @@ function deleteuser(email, successCallback, failureCallback){
         const customToken = await firebaseAdmin.auth().createCustomToken(user.uid);
         await firebase.auth().signInWithCustomToken(customToken);
         const currentUser = firebase.auth().currentUser;
-        const db = admin.firestore();
+        const db = firebase.firestore();
         
          currentUser.delete().then(()=>{
             db.collection('users/${user.uid}').doc().delete();
