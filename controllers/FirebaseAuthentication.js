@@ -220,8 +220,22 @@ function forgotPassword(email, successCallback, failureCallback){
             console.log("error occurred while sending password reset email: " + err);
             failureCallback(err.message);
         })
-        
+    })
+}
 
+function deleteuser(email, successCallback, failureCallback){
+    firebaseAdmin.auth().getUserByEmail(email).then(async (user) => {
+
+        const customToken = await firebaseAdmin.auth().createCustomToken(user.uid);
+        await firebase.auth().signInWithCustomToken(customToken);
+        const currentUser = firebase.auth().currentUser;
+         firebase.auth().delete(email).then(()=>{
+            console.log("User Account Deleted")
+            successCallback();
+        }).catch(err => {
+            console.log("error occurred while trying to delete user: " + err);
+            failureCallback(err.message);
+        })
 
     })
 }
@@ -234,5 +248,6 @@ module.exports = {
     logoutUser: logoutUser,
     getAllUserData: getAllUserData,
     getBalance: getBalance,
-    forgotPassword: forgotPassword
+    forgotPassword: forgotPassword,
+    deleteuser: deleteuser
 }
