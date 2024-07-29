@@ -232,6 +232,7 @@ function deleteuser(email, successCallback, failureCallback){
         const db = firebase.firestore();
         
          currentUser.delete().then(()=>{
+
             db.collection('users/${user.uid}').doc().delete();
             console.log("User Account Deleted")
             successCallback();
