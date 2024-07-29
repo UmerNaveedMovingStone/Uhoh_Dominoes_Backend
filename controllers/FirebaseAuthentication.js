@@ -232,7 +232,7 @@ function deleteuser(email, successCallback, failureCallback){
         const db = firebase.firestore();
         const userRef = await db.collection('users').where("email", "==", email).get();
         
-         currentUser.delete().then(()=>{
+         //currentUser.delete().then(()=>{
             userRef.docs.forEach((doc)=>{
                   if(doc){
                         var data = doc.data();
@@ -244,7 +244,7 @@ function deleteuser(email, successCallback, failureCallback){
                                 failureCallback("no user found")
                           }
                   }      
-            });
+           // });
             console.log("User Account Deleted");
             successCallback();
         }).catch(err => {
