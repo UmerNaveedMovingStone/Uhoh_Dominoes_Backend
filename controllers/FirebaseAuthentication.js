@@ -233,20 +233,18 @@ function deleteuser(email, successCallback, failureCallback){
         const userRef = await db.collection('users').where("email", "==", email).get();
         
          currentUser.delete().then(()=>{
-
-           // db.collection('users/${user.uid}').doc().delete();
-             userRef.docs.forEach((doc)=>{
-             if(doc){
-                var data = doc.data();
-                if (data.email === email){
-                    doc().delete();
-                    successCallback(data.balance);
-                }
-                else{
-                    failureCallback("no user found")
-                }
-            }
-            console.log("User Account Deleted")
+            userRef.docs.forEach((doc)=>{
+                  if(doc){
+                        var data = doc.data();
+                          if (data.email === email){
+                                doc().delete();
+                                successCallback(data.balance);
+                          }else{
+                                failureCallback("no user found")
+                          }
+                  }      
+            });
+            console.log("User Account Deleted");
             successCallback();
         }).catch(err => {
             console.log("error occurred while trying to delete user: " + err);
