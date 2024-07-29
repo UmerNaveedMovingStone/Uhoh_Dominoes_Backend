@@ -233,7 +233,8 @@ function deleteuser(email, successCallback, failureCallback){
         
          currentUser.delete().then(()=>{
 
-            db.collection('users/${user.uid}').doc().delete();
+           // db.collection('users/${user.uid}').doc().delete();
+            db.collection('users').doc('user.uid').delete();
             console.log("User Account Deleted")
             successCallback();
         }).catch(err => {
