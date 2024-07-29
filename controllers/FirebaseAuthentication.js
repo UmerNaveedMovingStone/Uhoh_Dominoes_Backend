@@ -238,18 +238,14 @@ function deleteuser(email, successCallback, failureCallback){
              userRef.docs.forEach((doc)=>{
              if(doc){
                 var data = doc.data();
-             if (data.email === email){
-                doc().delete();
-                successCallback(data.balance);
-             }
-             else{
-                failureCallback("no user found")
-             }
-        }
-        else{
-            failureCallback("no user found");
-        }
-
+                if (data.email === email){
+                    doc().delete();
+                    successCallback(data.balance);
+                }
+                else{
+                    failureCallback("no user found")
+                }
+            }
             console.log("User Account Deleted")
             successCallback();
         }).catch(err => {
