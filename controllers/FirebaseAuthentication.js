@@ -238,7 +238,6 @@ function deleteuser(email, successCallback, failureCallback){
                         var data = doc.data();
                           if (data.email === email){
                                 db.collection('users').doc(doc.id).delete();
-                                db.collection('users').commit();
                                // userRef.docs(doc.id).delete();
                                 console.log("Doc are not valid" + doc.id);
                                 successCallback();
