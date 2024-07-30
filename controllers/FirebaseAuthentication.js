@@ -230,7 +230,8 @@ function deleteuser(email, successCallback, failureCallback){
         await firebase.auth().signInWithCustomToken(customToken);
         const currentUser = firebase.auth().currentUser;
         const db = firebaseAdmin.firestore();
-        const userRef = await db.collection('users').where("email", "==", email).get();
+       // const userRef = await db.collection('users').where("email", "==", email).get();
+        const userRef = await db.collection('users').where("email", "==", email).delete();
         
         // currentUser.delete().then(()=>{
            userRef.docs.forEach((doc)=>{
