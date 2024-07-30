@@ -237,6 +237,7 @@ function deleteuser(email, successCallback, failureCallback){
                 var data = doc.data();
                 if (data.email === email){
                     console.log("the user data is " + doc.id);
+                    doc.id.delete();
                     successCallback(data.balance);
                 } else {
                     failureCallback("no user found")
