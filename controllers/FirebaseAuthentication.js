@@ -233,16 +233,11 @@ function deleteuser(email, successCallback, failureCallback){
         const userRef = await db.collection('users').where("email", "==", email).get();
         
         // currentUser.delete().then(()=>{
-           userRef.docs.forEach((doc)=>{
+           userRef.docs.forEach(async (doc)=>{
                   if(doc){
                         var data = doc.data();
                           if (data.email === email){
-                                db.collection('users').doc(doc.id).delete().then(()=>{
-                                    console.log("User Deleted" + doc.id);
-                                }).catch(err => {
-                                        console.log("error occurred while trying to delete user: " + err);
-                                        failureCallback(err.message);
-                                });
+                                await db.collection('users').doc(doc.id).delete();
                                 console.log("Doc are not valid" + doc.id);
                                 successCallback();
                           }else{
