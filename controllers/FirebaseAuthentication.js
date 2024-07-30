@@ -230,18 +230,16 @@ function deleteuser(email, successCallback, failureCallback){
         await firebase.auth().signInWithCustomToken(customToken);
         const currentUser = firebase.auth().currentUser;
         const db = firebaseAdmin.firestore();
-       // const userRef = await db.collection('users').where("email", "==", email).get();
-        const userRef = await db.collection('users').where("email", "==", email).delete();
+        const userRef = await db.collection('users').where("email", "==", email).get();
         
         // currentUser.delete().then(()=>{
            userRef.docs.forEach((doc)=>{
                   if(doc){
                         var data = doc.data();
                           if (data.email === email){
-                                db.collection('users').doc(doc.id).delete();
+                                //db.collection('users').doc(doc.id).delete();
+                              doc.ref.delete();
                                 console.log("Doc are not valid" + doc.id);
-                                db.collection('users').doc(doc.id).delete();
-                              
                                 successCallback();
                           }else{
                                 failureCallback("no user found")
