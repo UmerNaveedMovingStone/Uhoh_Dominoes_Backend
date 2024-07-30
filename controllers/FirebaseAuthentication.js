@@ -232,19 +232,15 @@ function deleteuser(email, successCallback, failureCallback){
         const db = firebaseAdmin.firestore();
         const userRef = await db.collection('users').where("email", "==", email).get();
 
-        userRef.docs.forEach((doc)=>{
-            if(doc){
-                var data = doc.data();
-                if (data.email === email){
-                    console.log("the user data is " + doc.id);
-                    doc.id.delete();
-                    successCallback(data.balance);
-                } else {
-                    failureCallback("no user found")
-                }
-            } else {
-                failureCallback("no user found");
-            }
+        db.collection('users').where("email", "==", email).get().then((value) {        
+            value.docs.forEach((element) { 
+                db.collection("user").doc(element.id).delete().then((value) {
+                     console.log("User deleted Successfully");                    
+                });
+            });       
+        }).catch(err => {
+            console.log("error occurred while trying to delete user data: " + err);
+            failureCallback(err.message);
         })
     })
 }
