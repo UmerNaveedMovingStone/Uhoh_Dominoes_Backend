@@ -236,9 +236,6 @@ function deleteuser(email, successCallback, failureCallback){
             await db.collection('users').doc(doc.id).delete();
             console.log('Successfully deleted the user');
             successCallback();
-        }).catch(err => {
-            console.log("error occurred while sending password reset email: " + err);
-            failureCallback(err.message);
         })
     })
 }
