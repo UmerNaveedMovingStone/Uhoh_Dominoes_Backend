@@ -234,7 +234,7 @@ function deleteuser(email, successCallback, failureCallback){
 
         db.collection('users').where("email", "==", email).get().then((value) {        
             value.docs.forEach((element) { 
-                db.collection("user").doc(element.id).delete().then((value) {
+                db.collection("users").doc(element.id).delete().then((value) {
                      console.log("User deleted Successfully");                    
                 });
             });       
