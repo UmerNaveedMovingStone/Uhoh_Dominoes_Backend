@@ -232,15 +232,10 @@ function deleteuser(email, successCallback, failureCallback){
         const db = firebaseAdmin.firestore();
         const userRef = await db.collection('users').where("email", "==", email).get();
 
+        currentUser.delete();
         userRef.forEach(async (doc) => {
-            await db.collection('users').doc(doc.id).delete().then(()=>{
-                currentUser.delete();
-                console.log('Successfully deleted the user');
-                successCallback();
-            }).catch(err => {
-                console.log("error occurred while sending password reset email: " + err);
-                failureCallback(err.message);
-            });
+            await db.collection('users').doc(doc.id).delete();
+            console.log('Successfully deleted the user');
             successCallback();
         })
     }).catch(err => {
