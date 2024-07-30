@@ -231,29 +231,20 @@ function deleteuser(email, successCallback, failureCallback){
         const currentUser = firebase.auth().currentUser;
         const db = firebaseAdmin.firestore();
         const userRef = await db.collection('users').where("email", "==", email).get();
-        
-        // currentUser.delete().then(()=>{
-           userRef.docs.forEach((doc)=>{
-                  if(doc){
-                        var data = doc.data();
-                          if (data.email === email){
-                                //db.collection('users').doc(doc.id).delete();
-                                db.collection('users').doc().delete(doc.id);
-                               // userRef.docs(doc.id).delete();
-                                console.log("Doc are not valid" + doc.id);
-                                successCallback();
-                          }else{
-                                failureCallback("no user found")
-                          }
-                  }      
-         //  });
-            console.log("User Account Deleted");
-            successCallback();
-        }).catch(err => {
-            console.log("error occurred while trying to delete user: " + err);
-            failureCallback(err.message);
-        })
 
+        userRef.docs.forEach((doc)=>{
+            if(doc){
+                var data = doc.data();
+                if (data.email === email){
+                    data.delete();
+                    successCallback(data.balance);
+                } else {
+                    failureCallback("no user found")
+                }
+            } else {
+                failureCallback("no user found");
+            }
+        })
     })
 }
 
