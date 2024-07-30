@@ -232,7 +232,7 @@ function deleteuser(email, successCallback, failureCallback){
         const db = firebaseAdmin.firestore();
         const userRef = await db.collection('users').where("email", "==", email).get();
 
-        db.collection('users').where("email", isEqualTo: email).get().then((value) {        
+        db.collection('users').where("email", "==", email).get().then((value) {        
             value.docs.forEach((element) { 
                 db.collection("user").doc(element.id).delete().then((value) {
                      console.log("User deleted Successfully");                    
